@@ -3,7 +3,7 @@ import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
-public record CreateCustomerCommand(
+public record CreateCustomerRequest(
         //Realizando a validação dos dados
         @Size(max = 100)
         @NotBlank (message = "O nome deve ser preenchido!")

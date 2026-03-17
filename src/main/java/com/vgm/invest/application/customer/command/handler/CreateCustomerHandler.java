@@ -1,6 +1,6 @@
 package com.vgm.invest.application.customer.command.handler;
 
-import com.vgm.invest.application.customer.command.CreateCustomerCommand;
+import com.vgm.invest.application.customer.command.CreateCustomerRequest;
 import com.vgm.invest.domain.customer.vo.Cpf;
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.vo.CustomerEmail;
@@ -22,7 +22,7 @@ public class CreateCustomerHandler {
     }
 
     //POST usuario
-    public Customer createCustomer(CreateCustomerCommand customerDto){
+    public Customer createCustomer(CreateCustomerRequest customerDto){
         //Cria os Values Objects da entidade de usuário
         //VO já realiza a validação dos dados, caso dê algum erro de validação que passou despercebido do DTO
         //Já irá lançar uma exception antes de sequer criar o usuário ou fazer consultas ao banco de dados
