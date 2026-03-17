@@ -1,9 +1,9 @@
-package com.vgm.invest.application.command;
+package com.vgm.invest.application.customer.command;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
-public record CreateCustomerRequest(
+public record CreateCustomerCommand(
         //Realizando a validação dos dados
         @Size(max = 100)
         @NotBlank (message = "O nome deve ser preenchido!")

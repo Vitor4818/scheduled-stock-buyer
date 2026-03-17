@@ -1,5 +1,8 @@
-package com.vgm.invest.domain.model.Customer;
+package com.vgm.invest.domain.customer.entities;
 
+import com.vgm.invest.domain.customer.vo.Cpf;
+import com.vgm.invest.domain.customer.vo.CustomerEmail;
+import com.vgm.invest.domain.customer.vo.MonthlyInvestment;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

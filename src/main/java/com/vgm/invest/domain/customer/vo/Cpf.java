@@ -1,4 +1,4 @@
-package com.vgm.invest.domain.model.Customer;
+package com.vgm.invest.domain.customer.vo;
 
 import br.com.caelum.stella.validation.CPFValidator;
 import jakarta.persistence.Column;

@@ -1,8 +1,8 @@
-package com.vgm.invest.domain.repository;
+package com.vgm.invest.domain.customer.repository;
 
-import com.vgm.invest.domain.model.Customer.Cpf;
-import com.vgm.invest.domain.model.Customer.Customer;
-import com.vgm.invest.domain.model.Customer.CustomerEmail;
+import com.vgm.invest.domain.customer.vo.Cpf;
+import com.vgm.invest.domain.customer.entities.Customer;
+import com.vgm.invest.domain.customer.vo.CustomerEmail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

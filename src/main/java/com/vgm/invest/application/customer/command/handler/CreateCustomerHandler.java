@@ -1,12 +1,12 @@
-package com.vgm.invest.application.handler;
+package com.vgm.invest.application.customer.command.handler;
 
-import com.vgm.invest.application.command.CreateCustomerRequest;
-import com.vgm.invest.domain.model.Customer.Cpf;
-import com.vgm.invest.domain.model.Customer.Customer;
-import com.vgm.invest.domain.model.Customer.CustomerEmail;
-import com.vgm.invest.domain.model.Customer.MonthlyInvestment;
-import com.vgm.invest.domain.repository.CustomerRepository;
-import com.vgm.invest.domain.service.CustomerRegistrationService;
+import com.vgm.invest.application.customer.command.CreateCustomerCommand;
+import com.vgm.invest.domain.customer.vo.Cpf;
+import com.vgm.invest.domain.customer.entities.Customer;
+import com.vgm.invest.domain.customer.vo.CustomerEmail;
+import com.vgm.invest.domain.customer.vo.MonthlyInvestment;
+import com.vgm.invest.domain.customer.repository.CustomerRepository;
+import com.vgm.invest.domain.customer.service.CustomerRegistrationService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +22,7 @@ public class CreateCustomerHandler {
     }
 
     //POST usuario
-    public Customer createCustomer(CreateCustomerRequest customerDto){
+    public Customer createCustomer(CreateCustomerCommand customerDto){
         //Cria os Values Objects da entidade de usuário
         //VO já realiza a validação dos dados, caso dê algum erro de validação que passou despercebido do DTO
         //Já irá lançar uma exception antes de sequer criar o usuário ou fazer consultas ao banco de dados

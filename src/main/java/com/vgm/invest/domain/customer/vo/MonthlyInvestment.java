@@ -1,4 +1,4 @@
-package com.vgm.invest.domain.model.Customer;
+package com.vgm.invest.domain.customer.vo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
