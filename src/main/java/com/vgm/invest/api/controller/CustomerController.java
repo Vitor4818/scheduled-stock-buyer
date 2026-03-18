@@ -1,7 +1,9 @@
 package com.vgm.invest.api.controller;
 
 import com.vgm.invest.application.customer.command.CreateCustomerRequest;
+import com.vgm.invest.application.customer.command.DeleteCustomerCommand;
 import com.vgm.invest.application.customer.command.handler.CreateCustomerHandler;
+import com.vgm.invest.application.customer.command.handler.DeleteCustomerHandler;
 import com.vgm.invest.application.customer.query.GetAllCustomersQuery;
 import com.vgm.invest.application.customer.query.GetCustomerByIdQuery;
 import com.vgm.invest.application.customer.query.dto.CustomerResponse;
@@ -25,11 +27,14 @@ public class CustomerController {
     private final CreateCustomerHandler createCustomerHandler;
     private final GetUserByIdQueryHandler getUserByIdQueryHandler;
     private final GetAllCustomerHandler getAllCustomerHandler;
+    private final DeleteCustomerHandler deleteCustomerHandler;
 
-    public CustomerController(GetAllCustomerHandler getAllCustomerHandler, GetUserByIdQueryHandler getUserByIdQueryHandler, CreateCustomerHandler createCustomerHandler) {
+
+    public CustomerController(GetAllCustomerHandler getAllCustomerHandler, GetUserByIdQueryHandler getUserByIdQueryHandler, CreateCustomerHandler createCustomerHandler, DeleteCustomerHandler deleteCustomerHandler) {
         this.getAllCustomerHandler = getAllCustomerHandler;
         this.getUserByIdQueryHandler = getUserByIdQueryHandler;
         this.createCustomerHandler = createCustomerHandler;
+        this.deleteCustomerHandler = deleteCustomerHandler;
     }
 
     @PostMapping
@@ -50,6 +55,13 @@ public class CustomerController {
        var query = new GetAllCustomersQuery(pageable);
        var response =  getAllCustomerHandler.getAllCustomers(query);
        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable UUID uuid){
+        var command = new DeleteCustomerCommand(uuid);
+        deleteCustomerHandler.deleteCustomer(command);
+        return ResponseEntity.noContent().build();
     }
 
 }

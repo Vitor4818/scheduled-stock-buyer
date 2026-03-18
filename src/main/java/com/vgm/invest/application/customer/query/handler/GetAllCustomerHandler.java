@@ -18,7 +18,7 @@ public class GetAllCustomerHandler {
 
     //GetAll
     public Page<CustomerResponse> getAllCustomers(GetAllCustomersQuery query){
-        Page<Customer> customers = customerRepository.findAll(query.pageable());
+        Page<Customer> customers = customerRepository.findAllActive(query.pageable());
         return customers.map(CustomerResponse::fromEntity);
     }
 }

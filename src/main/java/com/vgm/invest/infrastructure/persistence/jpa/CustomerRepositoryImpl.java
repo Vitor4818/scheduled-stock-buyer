@@ -42,7 +42,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        return springDataRepository.findAll(pageable);
+    public Page<Customer> findAllActive(Pageable pageable) {
+        return springDataRepository.findAllByIsActiveTrue(pageable);
     }
 }

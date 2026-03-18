@@ -16,5 +16,5 @@ public interface CustomerRepository {
     boolean existsByEmail(CustomerEmail email);
     Optional<Customer> findById(UUID uuid);
     Customer save(Customer customer);
-    Page<Customer> findAll(Pageable pageable);
+    Page<Customer> findAllActive(Pageable pageable);
 }

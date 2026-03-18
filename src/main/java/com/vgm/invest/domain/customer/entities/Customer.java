@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -51,6 +52,7 @@ public class Customer {
     //Usarei para não deletar dados do usuario e poder diferenciar os ativos dos que cancelaram a conta
     public void deactive(){
         this.isActive = false;
+        this.monthlyInvestment.setValue(BigDecimal.ZERO);
     }
 
 

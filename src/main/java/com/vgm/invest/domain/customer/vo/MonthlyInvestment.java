@@ -6,9 +6,11 @@ import jakarta.validation.constraints.DecimalMin;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Setter
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
