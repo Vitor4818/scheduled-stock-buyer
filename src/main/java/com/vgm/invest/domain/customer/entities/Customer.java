@@ -1,5 +1,6 @@
 package com.vgm.invest.domain.customer.entities;
 
+import com.vgm.invest.application.customer.command.UpdateCustomerCommand;
 import com.vgm.invest.domain.customer.vo.Cpf;
 import com.vgm.invest.domain.customer.vo.CustomerEmail;
 import com.vgm.invest.domain.customer.vo.MonthlyInvestment;
@@ -42,10 +43,15 @@ public class Customer {
         this.accessionDate = LocalDate.now();
     }
 
-    //Método de atualizar o aporte mensal.
-    //Não faz validação pois ja existe a validação no construtor do VO de aportes mensais
-    public void updateMontlyInvestment(MonthlyInvestment newMontlyInvestment){
-        this.monthlyInvestment = newMontlyInvestment;
+    //Metodo para atualizar parcialmente os dados do usuario. Só irá atualizar os campos recebidos
+    public void updateCustomer(UpdateCustomerCommand command) {
+        if (command.monthlyInvestment() != null) {
+            MonthlyInvestment monthlyInvestmentVO = new MonthlyInvestment(command.monthlyInvestment());
+            this.monthlyInvestment = monthlyInvestmentVO;
+        }
+        if (!command.name().isBlank()) {
+            this.name = command.name();
+        }
     }
 
     //Metodo de desativar a conta
@@ -54,6 +60,8 @@ public class Customer {
         this.isActive = false;
         this.monthlyInvestment.setValue(BigDecimal.ZERO);
     }
+
+
 
 
 }

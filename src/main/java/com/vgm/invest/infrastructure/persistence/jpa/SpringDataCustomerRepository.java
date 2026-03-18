@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+//Interface que interage com o banco de dados
 public interface SpringDataCustomerRepository extends JpaRepository<Customer, UUID> {
     boolean existsByCpf(Cpf cpf);
     boolean existsByEmail(CustomerEmail email);

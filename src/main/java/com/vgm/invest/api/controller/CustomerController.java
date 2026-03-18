@@ -2,8 +2,10 @@ package com.vgm.invest.api.controller;
 
 import com.vgm.invest.application.customer.command.CreateCustomerRequest;
 import com.vgm.invest.application.customer.command.DeleteCustomerCommand;
+import com.vgm.invest.application.customer.command.UpdateCustomerCommand;
 import com.vgm.invest.application.customer.command.handler.CreateCustomerHandler;
 import com.vgm.invest.application.customer.command.handler.DeleteCustomerHandler;
+import com.vgm.invest.application.customer.command.handler.UpdateCustomerHandler;
 import com.vgm.invest.application.customer.query.GetAllCustomersQuery;
 import com.vgm.invest.application.customer.query.GetCustomerByIdQuery;
 import com.vgm.invest.application.customer.query.dto.CustomerResponse;
@@ -28,21 +30,25 @@ public class CustomerController {
     private final GetUserByIdQueryHandler getUserByIdQueryHandler;
     private final GetAllCustomerHandler getAllCustomerHandler;
     private final DeleteCustomerHandler deleteCustomerHandler;
+    private final UpdateCustomerHandler updateCustomerHandler;
 
 
-    public CustomerController(GetAllCustomerHandler getAllCustomerHandler, GetUserByIdQueryHandler getUserByIdQueryHandler, CreateCustomerHandler createCustomerHandler, DeleteCustomerHandler deleteCustomerHandler) {
+    public CustomerController(UpdateCustomerHandler updateCustomerHandler, GetAllCustomerHandler getAllCustomerHandler, GetUserByIdQueryHandler getUserByIdQueryHandler, CreateCustomerHandler createCustomerHandler, DeleteCustomerHandler deleteCustomerHandler) {
         this.getAllCustomerHandler = getAllCustomerHandler;
         this.getUserByIdQueryHandler = getUserByIdQueryHandler;
         this.createCustomerHandler = createCustomerHandler;
         this.deleteCustomerHandler = deleteCustomerHandler;
+        this.updateCustomerHandler = updateCustomerHandler;
     }
 
+    //Metodo para cadastrar o usuario
     @PostMapping
     public ResponseEntity<Void> postCustomer(@RequestBody CreateCustomerRequest command){
         Customer savedCustomer = createCustomerHandler.createCustomer(command);
         return ResponseEntity.created(URI.create("/customers/"+savedCustomer.getId())).build();
     }
 
+    //Metodo para pegar o usuario pelo ID
     @GetMapping("/{uuid}")
     public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable UUID uuid){
         GetCustomerByIdQuery getCustomerByIdQuery = new GetCustomerByIdQuery(uuid);
@@ -50,6 +56,7 @@ public class CustomerController {
         return ResponseEntity.ok(response);
     }
 
+    //Metodo para retornar todos os usuarios
     @GetMapping()
     public ResponseEntity<Page<CustomerResponse>> getAllCustomer(Pageable pageable){
        var query = new GetAllCustomersQuery(pageable);
@@ -57,11 +64,19 @@ public class CustomerController {
        return ResponseEntity.ok(response);
     }
 
+    //Metodo para fazer o soft delete do usuario
     @DeleteMapping("/{uuid}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable UUID uuid){
         var command = new DeleteCustomerCommand(uuid);
         deleteCustomerHandler.deleteCustomer(command);
         return ResponseEntity.noContent().build();
+    }
+
+    //Metodo para atualizar os dados do usuario
+    @PutMapping("/{uuid}")
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable UUID uuid, @RequestBody UpdateCustomerCommand command){
+        var response = updateCustomerHandler.updateCustomer(uuid, command);
+        return ResponseEntity.ok(response);
     }
 
 }

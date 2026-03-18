@@ -21,13 +21,14 @@ public class MonthlyInvestment {
     private BigDecimal value;
 
     public MonthlyInvestment(BigDecimal value) {
+        final BigDecimal minValue = new BigDecimal("1");
         //Verifica se é nulo antes de salvar
         if (value == null){
             throw new RuntimeException("O valor deve ser preenchido.");
         }
         //Por regra de negócios, o valor do aporte mensal não pode ser menor que zero
-        if (value.compareTo(BigDecimal.ZERO) <= 0 ){
-            throw new RuntimeException("O valor deve ser positivo!  ");
+        if (value.compareTo(minValue) <= -1 ){
+            throw new RuntimeException("O aporte mínimo permitido é de R$ 1,00");
         }
         this.value = value;
     }
