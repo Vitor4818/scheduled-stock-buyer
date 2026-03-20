@@ -1,4 +1,4 @@
-package com.vgm.invest.infrastructure.persistence.jpa;
+package com.vgm.invest.infrastructure.persistence.jpa.Customer;
 
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.repository.CustomerRepository;
