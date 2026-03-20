@@ -4,40 +4,40 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.Random;
 
 @Service
 public class NumberAccountService {
 
-public String numberAccount(LocalDate date){
+    private static final SecureRandom RANDOM = new SecureRandom();
 
-    String halfDate = date.toString().replace("-", "").concat(String.valueOf(new SecureRandom().nextInt(9999)));
-    String[] aux = halfDate.split("");
+    public String generateAccountNumber(LocalDate date) {
+        String base = generateBase(date);
+        int checkDigit = calculateCheckDigit(base);
+        return base + "-" + checkDigit;
+    }
 
-    int num = 0;
-    int[] auxInt = new int[halfDate.length()];
+    private String generateBase(LocalDate date) {
+        String formattedDate = date.toString().replace("-", "");
+        int randomNumber = RANDOM.nextInt(10000); // 0 a 9999
+        return formattedDate + randomNumber;
+    }
 
-    for (int i = 0; i<halfDate.length(); i++ ){
-        int soma = Integer.parseInt(aux[i]) * 2;
-        if (soma>9){
-            String[] parcial = String.valueOf(soma).split("");
-            soma = Integer.parseInt(parcial[1])+Integer.parseInt(parcial[2]);
+    private int calculateCheckDigit(String base) {
+        int sum = 0;
+
+        for (char c : base.toCharArray()) {
+            int digit = Character.getNumericValue(c);
+            int doubled = digit * 2;
+
+            // Se for maior que 9, soma os dígitos (ex: 12 → 1 + 2 = 3)
+            if (doubled > 9) {
+                doubled = (doubled / 10) + (doubled % 10);
+            }
+
+            sum += doubled;
         }
-        auxInt[i] = soma;
+
+        int checkDigit = 10 - (sum % 10);
+        return (checkDigit == 10) ? 0 : checkDigit;
     }
-
-    for (int n : auxInt){
-        num += n;
-    }
-
-    int digitoVerificador = 10-(num%10);
-    if (digitoVerificador == 10) digitoVerificador = 0;
-
-    String numberAccount = halfDate.concat("-").concat(String.valueOf(digitoVerificador));
-    return numberAccount;
-
-}
-
-
-
 }

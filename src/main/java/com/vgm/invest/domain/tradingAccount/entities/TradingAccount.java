@@ -18,7 +18,7 @@ public class TradingAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "BINARY(16)")
-    private UUID uuid;
+    private UUID id;
     @OneToOne // Ou @ManyToOne, dependendo da sua regra
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
@@ -30,10 +30,10 @@ public class TradingAccount {
     @Column(name = "created_at")
     private LocalDate date;
 
-    public TradingAccount(TIPO type, LocalDate date, NumberAccount numberAccount, Customer customerId, UUID uuid) {
+    public TradingAccount(TIPO type, LocalDate date, NumberAccount numberAccount, Customer customer) {
         this.type = TIPO.FILHOTE;
+        this.customer = customer;
         this.date = LocalDate.now();
         this.numberAccount = numberAccount;
-        this.uuid = uuid;
     }
 }

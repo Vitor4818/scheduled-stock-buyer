@@ -1,6 +1,7 @@
 package com.vgm.invest.application.customer.command.handler;
 
 import com.vgm.invest.application.customer.command.CreateCustomerRequest;
+import com.vgm.invest.application.tradingAccount.Handler.CreateTradingAccountHandler;
 import com.vgm.invest.domain.customer.vo.Cpf;
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.vo.CustomerEmail;
@@ -15,10 +16,12 @@ public class CreateCustomerHandler {
     //Injeção de dependencias
     private final CustomerRepository customerRepository;
     private final CustomerRegistrationService customerRegistrationService;
+    private final CreateTradingAccountHandler createTradingAccountHandler;
 
-    public CreateCustomerHandler(CustomerRepository customerRepository, CustomerRegistrationService customerRegistrationService) {
+    public CreateCustomerHandler(CustomerRepository customerRepository, CustomerRegistrationService customerRegistrationService, CreateTradingAccountHandler createTradingAccountHandler) {
         this.customerRepository = customerRepository;
         this.customerRegistrationService = customerRegistrationService;
+        this.createTradingAccountHandler = createTradingAccountHandler;
     }
 
     //POST usuario
@@ -42,7 +45,9 @@ public class CreateCustomerHandler {
         );
 
         //Salva o usuario no banco de dados
-        return customerRepository.save(customer);
+        customerRepository.save(customer);
+        createTradingAccountHandler.createTradingAccount(customer);
+        return customer;
     }
 
 }

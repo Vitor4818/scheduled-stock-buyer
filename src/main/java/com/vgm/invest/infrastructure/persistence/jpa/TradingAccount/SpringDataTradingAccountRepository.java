@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface SpringDataTradingAccountRepository extends JpaRepository<UUID, TradingAccount> {
+public interface SpringDataTradingAccountRepository extends JpaRepository<TradingAccount, UUID> {
 
 }
