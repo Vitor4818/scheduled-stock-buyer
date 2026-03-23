@@ -25,4 +25,9 @@ public class TradingAccountRepositoryImpl implements TradingAccountRepository {
     public Optional<TradingAccount> findById(UUID uuid) {
         return tradingAccountRepository.findById(uuid);
     }
+
+    @Override
+    public Optional<TradingAccount> findByCustomerId(UUID uuid) {
+        return tradingAccountRepository.findByCustomerId(uuid);
+    }
 }

@@ -1,7 +1,7 @@
 package com.vgm.invest.application.customer.command.handler;
 
 import com.vgm.invest.application.customer.command.CreateCustomerRequest;
-import com.vgm.invest.application.tradingAccount.Handler.CreateTradingAccountHandler;
+import com.vgm.invest.application.TradingAccount.command.handler.CreateTradingAccountHandler;
 import com.vgm.invest.domain.customer.vo.Cpf;
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.vo.CustomerEmail;

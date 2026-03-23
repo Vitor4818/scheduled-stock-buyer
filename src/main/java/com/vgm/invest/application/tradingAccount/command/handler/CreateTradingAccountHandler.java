@@ -1,4 +1,4 @@
-package com.vgm.invest.application.tradingAccount.Handler;
+package com.vgm.invest.application.TradingAccount.command.handler;
 
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.repository.CustomerRepository;
@@ -10,7 +10,6 @@ import com.vgm.invest.domain.tradingAccount.vo.NumberAccount;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Service
 public class CreateTradingAccountHandler {

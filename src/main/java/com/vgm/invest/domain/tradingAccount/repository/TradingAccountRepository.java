@@ -7,5 +7,6 @@ import java.util.UUID;
 public interface TradingAccountRepository {
     TradingAccount save(TradingAccount tradingAccount);
     Optional<TradingAccount> findById(UUID uuid);
+    Optional<TradingAccount> findByCustomerId(UUID uuid);
 
 }
