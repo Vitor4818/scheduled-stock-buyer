@@ -24,12 +24,15 @@ public class CreateTradingAccountHandler {
         this.numberAccountService = numberAccount;
     }
 
-    //cria conta gráfica
+
     public TradingAccount createTradingAccount(Customer customer){
         String numberAccount = numberAccountService.generateAccountNumber(customer.getAccessionDate());
         NumberAccount numberAccountVO = new NumberAccount(numberAccount);
         TradingAccount tradingAccount = new TradingAccount(TIPO.FILHOTE, LocalDate.now(),numberAccountVO, customer);
         return tradingAccountRepository.save(tradingAccount);
     }
+
+
+
 
 }
