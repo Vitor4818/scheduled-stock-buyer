@@ -1,4 +1,5 @@
 package com.vgm.invest.domain.basket.entity;
+import com.vgm.invest.application.basket.command.UpdateBasketCommand;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -29,5 +30,9 @@ public class Basket {
     public void deactivateBasket(){
         this.isActive = false;
         this.deactivationDate = LocalDate.now();
+    }
+
+    public void updateBasket(UpdateBasketCommand command) {
+    this.name = command.name();
     }
 }

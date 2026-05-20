@@ -1,4 +1,6 @@
 package com.vgm.invest.application.basket.query;
 
-public record GetBasketById() {
+import java.util.UUID;
+
+public record GetBasketById(UUID uuid) {
 }
