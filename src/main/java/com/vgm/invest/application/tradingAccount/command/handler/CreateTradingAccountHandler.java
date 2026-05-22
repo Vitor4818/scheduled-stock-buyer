@@ -1,4 +1,4 @@
-package com.vgm.invest.application.TradingAccount.command.handler;
+package com.vgm.invest.application.tradingAccount.command.handler;
 
 import com.vgm.invest.domain.customer.entities.Customer;
 import com.vgm.invest.domain.customer.repository.CustomerRepository;

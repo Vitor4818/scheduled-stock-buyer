@@ -2,7 +2,7 @@ package com.vgm.invest.api.controller;
 
 import com.vgm.invest.application.TradingAccount.query.GetTradingAccountByUserId;
 import com.vgm.invest.application.TradingAccount.query.dto.TradingAccountResponse;
-import com.vgm.invest.application.TradingAccount.query.handler.GetTradingAccountByUserIdHandler;
+import com.vgm.invest.application.tradingAccount.query.handler.GetTradingAccountByUserIdHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

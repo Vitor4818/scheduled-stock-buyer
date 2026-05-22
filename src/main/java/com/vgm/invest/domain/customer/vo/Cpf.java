@@ -3,6 +3,7 @@ package com.vgm.invest.domain.customer.vo;
 import br.com.caelum.stella.validation.CPFValidator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.ValidationException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +25,11 @@ public class Cpf {
         //Cria o objeto da Lib
         CPFValidator cpfValidator = new CPFValidator();
         //Verifica se é válido
-        try{ cpfValidator.assertValid(normalized);
-        //Se não for, lança uma exception
+        try{
+            cpfValidator.assertValid(normalized);
+            //Se não for, lança uma exception
         }catch(Exception e){
-            throw new IllegalArgumentException("Cpf Inválido");
+            throw new ValidationException("O CPF informado é inválido. Certifique-se de que os dígitos estão corretos.");
         }
         //Salva o valor de CPF
         this.value = normalized;

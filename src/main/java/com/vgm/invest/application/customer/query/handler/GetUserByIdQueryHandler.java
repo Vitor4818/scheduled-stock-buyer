@@ -2,6 +2,7 @@ package com.vgm.invest.application.customer.query.handler;
 
 import com.vgm.invest.application.customer.query.dto.CustomerResponse;
 import com.vgm.invest.domain.customer.repository.CustomerRepository;
+import com.vgm.invest.domain.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import com.vgm.invest.application.customer.query.GetCustomerByIdQuery;
 
@@ -17,7 +18,7 @@ public class GetUserByIdQueryHandler {
     public CustomerResponse getCustomerById (GetCustomerByIdQuery queryHandler){
         return customerRepository.findById(queryHandler.customerId())
                 .map(CustomerResponse::fromEntity)
-                .orElseThrow(()-> new RuntimeException("Usuario não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cliente não localizado com o identificador informado."));
 
     }
 
